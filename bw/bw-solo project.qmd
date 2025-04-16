@@ -1,5 +1,5 @@
 ---
-title: "Water Area Distribution Aross Tennessee"
+title: "Solo Project"
 ---
 
 ```{r}

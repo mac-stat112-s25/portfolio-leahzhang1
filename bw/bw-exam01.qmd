@@ -1,5 +1,5 @@
 ---
-title: "Food Consumption Viz"
+title: "Exam 1"
 ---
 
 ```{r}

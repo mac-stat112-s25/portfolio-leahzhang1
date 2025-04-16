@@ -33,7 +33,6 @@ book:
       - bw/bw-exam01.qmd
       - bw/bw-exam02.qmd
       - bw/bw-solo project.qmd
-      - bw/bw-project.qmd
       
     - part: "In-class Activities"
       chapters: 

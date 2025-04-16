@@ -1,5 +1,5 @@
 ---
-title: "Food Consumption Wrangling"
+title: "Exam 2"
 ---
 
 ```{r}

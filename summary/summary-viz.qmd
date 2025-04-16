@@ -1,5 +1,5 @@
 ---
-title: "summary-viz"
+title: "Visualization"
 ---
 
 ![](01.png)
