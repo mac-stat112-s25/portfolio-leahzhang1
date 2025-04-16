@@ -1,0 +1,183 @@
+---
+title: "Wrangling Data"
+---
+
+```{r}
+library("tidyverse")
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+```
+
+Exercise 1: select Practice
+
+```{r}
+# Define elections_small
+elections_small <- elections |>
+ select(state_name, county_name, total_votes_20, repub_pct_20, dem_pct_20, total_votes_16, dem_pct_16)
+
+# Check out the first 6 rows to confirm your code did what you think it did!
+head(elections_small)
+```
+
+Exercise 2: filter Demo
+
+```{r}
+# Keep only data on counties in Hawaii
+elections_small |>
+ filter(state_name == "Hawaii")
+```
+
+```{r}
+# Keep counties in Hawaii AND Delaware
+elections_small |> 
+  filter(state_name %in% c("Hawaii", "Delaware"))
+```
+
+```{r}
+# Keep only data on counties where the Republican got MORE THAN 93.97% of the vote in 2020
+elections_small |> 
+  filter(repub_pct_20 > 93.97)
+```
+
+```{r}
+# Keep only data on counties where the Republican got AT LEAST 93.97% of the vote in 2020
+# This should have 1 more row than your answer above
+elections_small |> 
+  filter(repub_pct_20 >= 93.97)
+```
+
+```{r}
+# Keep only data on counties in Texas where the Democrat got more than 65% of the vote in 2020
+# Do this 2 ways.
+# Method 1: 2 filters with 1 condition each
+elections_small |>
+ filter(state_name == "Texas") |>
+ filter(dem_pct_20 > 65)
+```
+
+```{r}
+# Method 2: 1 filter with 2 conditions
+elections_small |>
+ filter(state_name == "Texas", dem_pct_20 > 65)
+```
+
+Exercise 3: arrange Demo
+
+```{r}
+# Arrange the counties in elections_small from lowest to highest percentage of 2020 Republican support
+# Print out just the first 6 rows
+elections_small |>
+  arrange(repub_pct_20) |>
+  head()
+```
+
+```{r}
+# Arrange the counties in elections_small from highest to lowest percentage of 2020 Republican support
+# Print out just the first 6 rows
+elections_small |>
+  arrange(desc(repub_pct_20)) |>
+  head()
+```
+
+Exercise 4: mutate Demo Part b
+
+```{r}
+# Define diff_20, the difference btwn the Repub and Dem percent in 2020
+elections_small |> 
+  mutate(diff_20 = repub_pct_20 - dem_pct_20) |> 
+  head()
+```
+
+```{r}
+# Define repub_votes_20, the number (not percent) of Repub votes in 2020
+elections_small |> 
+  mutate(repub_votes_20 = round(total_votes_20 * repub_pct_20/100)) |> 
+  head()
+```
+
+```{r}
+# Define repub_win_20, whether the Repub won in 2020 (TRUE or FALSE!)
+elections_small |> 
+  mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |> 
+  head()
+```
+
+Exercise 5: Pipe Series Part a
+
+```{r}
+# elections_small |> 
+#   filter(state_name == "Wisconsin",
+#          repub_pct_20 < dem_pct_20) |> 
+#   arrange(desc(total_votes_20)) |> 
+#   head()
+```
+
+Partb
+
+```{r}
+# Now try it. Change the order of filter and arrange below.
+# elections_small |> 
+#   filter(state_name == "Wisconsin",
+#          repub_pct_20 < dem_pct_20) |> 
+#   arrange(desc(total_votes_20)) |> 
+#   head()
+```
+
+Part c It’s more “computationally efficient” to get rid of some rows before arranging.
+
+Part d
+
+```{r}
+# elections_small |> 
+#   filter(state_name == "Delaware") |> 
+#   mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |> 
+#   select(county_name, repub_pct_20, dem_pct_20, repub_win_20)
+```
+
+Part e
+
+```{r}
+# Now try it. Change the order of mutate and select below.
+# elections_small |> 
+#   filter(state_name == "Delaware") |> 
+#   mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |> 
+#   select(county_name, repub_pct_20, dem_pct_20, repub_win_20)
+```
+
+We can’t select a variable before we define it!
+
+Exercise 6: DIY Pipe Series Part a
+
+```{r}
+# Remember to try this 1 line at a time
+elections_small |> 
+  filter(state_name == "Minnesota") |> 
+  select(county_name, dem_pct_20) |> 
+  arrange(desc(dem_pct_20))
+```
+
+Part b
+
+```{r}
+# Define the dataset
+mn_wi<- elections_small|>
+# Only store the results once you're confident that they're correct
+  filter(state_name %in% c("Minnesota", "Wisconsin")) |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |>
+  mutate(dem_change = dem_pct_20 - dem_pct_16) |> 
+  arrange(dem_change)
+
+# Check out the first 6 rows to confirm your results
+head(mn_wi)
+```
+
+Part c
+
+```{r}
+ggplot(mn_wi, aes(x = dem_change, fill = state_name)) + 
+  geom_density(alpha = 0.5)
+```
+
+```{r}
+ggplot(mn_wi, aes(y = dem_change, x = state_name)) + 
+  geom_boxplot()
+```

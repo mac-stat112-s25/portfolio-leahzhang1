@@ -1,0 +1,27 @@
+---
+title: "Food Consumption Viz"
+---
+
+```{r}
+#Load data
+library(tidyverse)
+library(tidytuesdayR)
+tuesdata <- tt_load('2020-02-18')
+fc <-tuesdata$food_consumption
+```
+
+```{r}
+#Check data
+dim(fc)
+str(fc)
+head(fc)
+summarise(fc)
+```
+
+```{r}
+#Vizualization
+ggplot(fc, aes(y = consumption, x = country)) + 
+  geom_boxplot() + 
+  facet_wrap(~ food_category) +
+  theme_minimal()
+```

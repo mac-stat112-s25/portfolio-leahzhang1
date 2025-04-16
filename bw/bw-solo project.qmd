@@ -1,0 +1,25 @@
+---
+title: "Water Area Distribution Aross Tennessee"
+---
+
+```{r}
+library(sf)
+library(ggplot2)
+tennessee_shapes <- read_sf("/Users/leah/Desktop/portfolio-leahzhang1/tl_2019_47_cousub/tl_2019_47_cousub.shp")
+```
+
+```{r}
+ggplot() +
+  geom_sf(
+    data = tennessee_shapes, 
+    aes(fill = AWATER / 1e6),
+    color = "white", size = 0.4) +
+  coord_sf(crs = "+proj=robin") +
+  scale_fill_gradient(labels = scales::comma) +
+  labs(fill = NULL,
+       title = "Water Area Distribution Aross Tennessee",
+       subtitle = "County-level water area in square kilometers",
+        caption = "Data: U.S. Census Bureau TIGER/Line Shapefiles") +
+  theme_void() +
+  theme(legend.position = "bottom")
+```

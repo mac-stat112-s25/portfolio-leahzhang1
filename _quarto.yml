@@ -4,7 +4,7 @@ project:
 
 book:
   title: "COMP/STAT112 Notebook"
-  author: "Your Name Here"
+  author: "Leah"
   date: today
   reader-mode: true
   page-navigation: true
@@ -13,7 +13,7 @@ book:
   
   
   sidebar:
-    title: "Your Name Here"
+    title: "Leah"
     collapse-level: 2
     style: "docked"
     pinned: true
@@ -30,14 +30,28 @@ book:
       - bw/bw-tri.qmd
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
-
+      - bw/bw-exam01.qmd
+      - bw/bw-exam02.qmd
+      - bw/bw-solo project.qmd
+      - bw/bw-project.qmd
+      
     - part: "In-class Activities"
       chapters: 
       - ica/ica-uni.qmd
       - ica/ica-bi.qmd
       - ica/ica-multi.qmd
       - ica/ica-spatial.qmd
-
+      - ica/ica_wrangling.qmd
+      - ica/ica-dates.qmd
+      - ica/ica-joining.qmd
+      - ica/ica-factors.qmd
+      - ica/ica-strings.qmd
+      
+    - part: "Summary"
+      chapters: 
+      - summary/summary-viz.qmd
+      - summary/summary-data wrangling.qmd
+      
 format:
   html:
     theme:

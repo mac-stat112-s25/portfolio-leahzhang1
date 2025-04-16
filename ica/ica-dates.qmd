@@ -1,0 +1,193 @@
+---
+title: "Dates"
+---
+
+Example 1: Single Verb
+
+```{r}
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+
+# Check it out
+head(penguins)
+```
+
+```{r}
+ggplot(penguins,aes(y=body_mass_g,x=bill_length_mm,color=species))+
+  geom_point()+
+  facet_wrap(~sex)
+```
+
+```{r}
+# Get data on only Adelie penguins that weigh more than 4700g
+penguins |> 
+filter(species=="Adelie",body_mass_g>4700
+       )
+# Get data on penguin body mass only
+# Show just the first 6 rows
+penguins |> 
+  select(body_mass_g) |> 
+  head()
+  
+# Sort the penguins from smallest to largest body mass
+# Show just the first 6 rows
+penguins |> 
+  arrange(body_mass_g) |>
+  head()
+
+# Calculate the average body mass across all penguins
+# Note: na.rm = TRUE removes the NAs from the calculation
+penguins |> 
+  summarize(mean=mean(body_mass_g,na.rm=TRUE))
+
+# Calculate the average body mass by species
+penguins |> 
+  group_by(species) |> 
+  summarize(mean=mean(body_mass_g,na.rm=TRUE))
+
+# Create a new column that records body mass in kilograms, not grams
+# NOTE: there are 1000 g in 1 kg
+# Show just the first 6 rows
+penguins |> 
+  mutate(body_mass_kg=body_mass_g/1000) |> 
+  head()
+```
+
+```{r}
+ggplot(penguins, aes(x=species))+
+         geom_bar()
+```
+
+```{r}
+penguins |> 
+  group_by(species) |> 
+  summarize(n())
+```
+
+```{r}
+penguins |> 
+  count(species)
+```
+
+Example 2: Multiple Verbs
+
+```{r}
+# Sort Gentoo penguins from biggest to smallest with respect to their 
+# bill length in cm (there are 10 mm in a cm)
+penguins |> 
+  filter(species == "Gentoo") |> 
+  mutate(bill_length_cm=bill_length_mm/10) |> 
+  arrange(bill_length_cm)
+```
+
+```{r}
+# Sort the species from smallest to biggest with respect to their 
+# average bill length in cm
+penguins |> 
+  mutate(bill_length_cm = bill_length_mm / 10) |> 
+  group_by(species) |> 
+  summarize(mean_bill_length = mean(bill_length_cm, na.rm = TRUE)) |> 
+  arrange(desc(mean_bill_length))
+```
+
+Example 3: Interpret Code
+
+```{r}
+penguins |> 
+  filter(species=="Chinstrap") |> 
+  group_by(sex) |> 
+  summarize(min = min(body_mass_g), max = max(body_mass_g)) |> 
+  mutate(range = max - min)
+```
+
+Exercise 1: More Filtering
+
+```{r}
+# Create a dataset with just Adelie and Chinstrap using %in%
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+ penguins |> 
+   filter(species %in% c("Adelie","Chinstrap")) |> 
+   count(species)
+```
+
+```{r}
+# Create a dataset with just Adelie and Chinstrap using !=
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+ penguins |> 
+   filter(species !="Gentoo") |> 
+   count(species)
+```
+
+Part b
+
+```{r}
+head(penguins)
+```
+
+Example 1
+
+```{r}
+# NOTE the use of is.na()
+penguins |> 
+  summarize(sum(is.na(body_mass_g)))
+```
+
+```{r}
+# NOTE the use of is.na()
+penguins_w_body_mass <- penguins |> 
+  filter(!is.na(body_mass_g))
+
+# Compare the number of penguins in this vs the original data
+nrow(penguins_w_body_mass)
+```
+
+```{r}
+nrow(penguins)
+```
+
+```{r}
+penguins_w_body_mass |> 
+  summarize(sum(is.na(sex)))
+```
+
+Example 2
+
+```{r}
+penguins_complete <- penguins |> 
+  na.omit()
+```
+
+```{r}
+nrow(penguins_complete)
+```
+
+```{r}
+nrow(penguins)
+```
+
+Exercise 2: More Selecting
+
+```{r}
+# First: recall the variable names
+names(penguins)
+```
+
+```{r}
+# Use a shortcut to keep everything but the year and island variables
+penguins |> 
+  select(-year, -island)
+
+# Use a shortcut to keep only species and the penguin characteristics measured in mm
+penguins |> 
+  select(species, ends_with("mm"))
+
+# Use a shortcut to keep only species and bill-related measurements
+# Use a shortcut to keep only species and bill-related measurements
+penguins |> 
+  select(species, starts_with("bill"))
+
+# Use a shortcut to keep only species and the length-related characteristics
+# Use a shortcut to keep only species and the length-related characteristics
+penguins |> 
+  select(species, contains("length"))
+```
