@@ -10,7 +10,6 @@ format:
     code-fold: true
 ---
 
-Use this file to generate a professional looking **univariate** visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
 
 ```{r}
 library(ggplot2)
@@ -22,10 +21,9 @@ hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
 ggplot(hikes, aes(x = elevation)) +
   geom_histogram(color = "white") +
   labs(
-    title = "Distribution of Hike Elevations",
-    subtitle = "Data from High Peaks region",
+    title = "Distribution of 46 Hike Elevations in the Adirondack Mountains",
     x = "Elevation (feet)", y = "Number of hikes",
-    caption = "Source: High Peaks data"
+    caption = "Data Source: https://mac-stat.github.io/data/high_peaks.csv by Leah Zhang"
   )
 ```
 

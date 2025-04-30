@@ -1,5 +1,13 @@
 ---
 title: "Solo Project"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
 ---
 
 ```{r}

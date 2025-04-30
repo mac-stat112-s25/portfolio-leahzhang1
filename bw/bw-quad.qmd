@@ -10,8 +10,6 @@ format:
     code-fold: true
 ---
 
-Use this file to generate a professional looking **quadvariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
-
 ```{r}
 library(tidyverse)
 
@@ -27,7 +25,7 @@ ggplot(weather, aes(y = temp3pm, x = temp9am, color = location)) +
     subtitle = "Faceted by Rain Today Status",
     x = "Temperature at 9 AM (°C)",
     y = "Temperature at 3 PM (°C)",
-    caption = "Source: Weather Data for 3 Locations"
+    caption = "Source: https://mac-stat.github.io/data/weather_3_locations.csv by Leah Zhang"
   )
 ```
 
