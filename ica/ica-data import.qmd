@@ -1,0 +1,120 @@
+---
+title: "Data Import"
+---
+
+Exercise 1: Save Data Locally
+
+```{r}
+library(tidyverse)
+imdb_messy <- read_csv("imdb_5000_messy.csv")
+
+getwd()
+```
+
+Exercise 3: Check Data
+
+```{r}
+imdb_messy |>
+  mutate(across(where(is.character), as.factor)) |>  # convert characters to factors in order to summarize
+  summary()
+```
+
+Exercise 4
+
+```{r}
+imdb_messy |> 
+  count(color)
+```
+
+Exercise 5
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(color = fct_recode(color,
+                            "Color" = "COLOR",
+                            "Color" = "color",
+                            "Black_White" = "B&W",
+                            "Black_White" = "Black and White"))
+
+imdb_temp |> 
+  count(color)
+```
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(color = str_replace(color, "COLOR", "Color"),
+         color = str_replace(color, "color", "Color"),
+         color = str_replace(color, "B&W", "Black_White"),
+         color = str_replace(color, "Black and White", "Black_White"))
+
+imdb_temp |> 
+  count(color)
+```
+
+Exercise 6
+
+```{r}
+# Count the total number of rows in imdb_messy
+nrow(imdb_messy)
+```
+
+```{r}
+# Then count the number of NAs in each column
+colSums(is.na(imdb_messy))
+```
+
+```{r}
+imdb_messy |> 
+  filter(is.na(actor_1_facebook_likes))
+```
+
+Exercise 7
+
+```{r}
+imdb_messy |> 
+  summarize(mean(duration, na.rm = TRUE))
+```
+
+```{r}
+imdb_temp <- drop_na(imdb_messy)
+nrow(imdb_temp)
+```
+
+```{r}
+colSums(is.na(imdb_temp))
+```
+
+```{r}
+ggplot(imdb_messy, aes(x = duration, fill = color)) +
+  geom_density()
+```
+
+```{r}
+# Approach 1
+imdb_temp <- imdb_messy |> 
+  select(duration, color) |> 
+  drop_na()
+dim(imdb_temp)
+```
+
+```{r}
+# Approach 2
+imdb_temp <- imdb_messy |> 
+  filter(!is.na(duration), !is.na(color))
+dim(imdb_temp)
+```
+
+```{r}
+# Plot
+ggplot(imdb_temp, aes(x = duration, fill = color)) +
+  geom_density()
+```
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(actor_1_facebook_likes =
+         replace_na(actor_1_facebook_likes, 0))
+
+imdb_temp |> 
+  summarize(sum(is.na(actor_1_facebook_likes)))
+```

@@ -1,0 +1,17 @@
+---
+title: "Joining"
+---
+
+Exercise 1: Where are my keys?
+
+Part a
+```{r}
+students_2 <- data.frame(
+  student = c("D", "E", "F"),
+  class = c("COMP 101", "BIOL 101", "POLI 101")
+)
+
+# Check it out
+students_2
+```
+

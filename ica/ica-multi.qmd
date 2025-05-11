@@ -1,0 +1,79 @@
+---
+title: "Mulivariate Viz"
+---
+
+```{r}
+# Import and check out data
+library(ggplot2)
+education <- read.csv("https://mac-stat.github.io/data/sat.csv")
+head(education)
+```
+
+Exercise 1: SAT scores Part a
+
+```{r}
+ggplot(education, aes(x = sat)) +
+  geom_histogram()
+```
+
+Part b \> The distribution of SAT scores is unimodal, right-skewed, with a few gaps. The median SAT score is roughly 900 and the data ranges from 850 to 1100)
+
+Exercise 2: SAT Scores vs Per Pupil Spending & SAT Scores vs Salaries Part a
+
+```{r}
+# Construct a plot of sat vs expend
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(x = sat, y = expend)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+# Construct a plot of sat vs salary
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(x = sat, y = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Part b \> It seems that when SAT scores increase, the spending and salary would decrease. Yes this suprises me because I would expect an increase in spending and salary.
+
+Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries
+
+```{r}
+ggplot(education, aes(x = sat, y = salary, color=expend)) +
+  geom_point()
+```
+
+Exercise 4: Another way to Incorporate Scale
+
+```{r}
+ggplot(education, aes(y = sat, x = salary, color = cut(expend, 2))) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+Exercise 5: Finally and Explanation
+Part a
+```{r}
+ggplot(education, aes(x = fracCat)) +
+  geom_bar()
+```
+Part b
+```{r}
+ggplot(education, aes(x = sat, fill = fracCat)) +
+  geom_boxplot()
+```
+> The more students in a state that take the SAT, the lower the average scores tend to be. This is probably related to self-selection.
+
+Part c
+```{r}
+ggplot(education, aes(x = sat, y = expend, fill = fracCat)) +
+  geom_boxplot()
+```
+> When we control for the fraction of students that take the SAT, SAT scores increase with expenditure.
+
+Part d
+> Student participation tends to be lower among states with lower expenditures (which are likely also the states with higher ed institutions that haven’t historically required the SAT). Those same states tend to have higher SAT scores because of the self-selection of who participates.
+
+

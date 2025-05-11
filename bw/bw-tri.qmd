@@ -1,0 +1,31 @@
+---
+title: "Trivariate Viz"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
+---
+
+
+```{r}
+# Import and check out data
+library(ggplot2)
+education <- read.csv("https://mac-stat.github.io/data/sat.csv")
+head(education)
+```
+```{r}
+ggplot(education, aes(x = sat, y = salary, color=expend)) +
+  geom_point() +
+  labs(
+    title = "Relationship Between SAT Scores and Teacher Salaries",
+    subtitle = "Colored by Expenditure per Student",
+    x = "Average SAT Score",
+    y = "Average Teacher Salary (USD)",
+    caption = "Source: https://mac-stat.github.io/data/sat.csv by Leah Zhang")
+```
+
+

@@ -1,0 +1,93 @@
+---
+title: "Exam 2"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
+---
+
+```{r}
+#Load data
+library(tidyverse)
+library(tidytuesdayR)
+tuesdata <- tt_load('2020-02-18')
+fc <-tuesdata$food_consumption
+```
+
+```{r}
+names(fc)
+```
+
+```{r}
+# Research Question 1
+top_5_countries <- fc %>%
+  group_by(country) %>%
+  summarize(total_consumption = sum(consumption)) %>%
+  arrange(desc(total_consumption)) %>%  
+  head(5)    
+
+top_5_countries
+```
+
+```{r}
+barplot(
+  height = top_5_countries$total_consumption,
+  names.arg = top_5_countries$country,
+  main = "Top 5 Countries by Total Consumption",
+  xlab = "Country",
+  ylab = "Total Consumption", 
+  las = 2)
+```
+
+```{r}
+# Research Question 2
+consumption_summary <- fc %>%
+  group_by(food_category, country) %>%
+  summarize(total_consumption = sum(consumption), .groups = "drop")
+
+top_5_by_food <- consumption_summary %>%
+  group_by(food_category) %>%
+  arrange(desc(total_consumption)) %>%
+  slice_head(n = 5) %>%
+  ungroup()
+
+
+print(top_5_by_food)
+```
+
+```{r}
+ggplot(top_5_by_food, aes(x = country, y = total_consumption)) +
+  geom_col(fill = "steelblue") +
+  facet_wrap(~ food_category) +
+  labs(
+    title = "Top 5 Countries by Food Consumption for Each Food Type",
+    x = "Country",
+    y = "Total Consumption"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 4))
+```
+
+```{r}
+# Research Question 3
+consumption_summary <- fc %>%
+  group_by(food_category, country) %>%
+  summarize(total_consumption = sum(consumption), .groups = "drop")
+world_map <- map_data("world")
+merged_data <- left_join(world_map, consumption_summary, by = c("region" = "country"))
+ggplot(merged_data, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = total_consumption), color = "white", size = 0.2) +
+  facet_wrap(~ food_category) +
+  scale_fill_continuous(name = "Total Consumption",
+                        low = "yellow", high = "red", na.value = "grey80") +
+  labs(title = "Choropleth Maps of Food Consumption by Country",
+       subtitle = "Each panel represents a food type",
+       x = "", y = "") +
+  theme_minimal() +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+```
