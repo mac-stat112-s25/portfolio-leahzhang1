@@ -1,0 +1,30 @@
+name: Publish Quarto Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render Quarto Site
+        run: quarto render
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: mac-stat112-s25/portfolio-leahzhang1
+          publish_branch: gh-pages
+          publish_dir: _site
