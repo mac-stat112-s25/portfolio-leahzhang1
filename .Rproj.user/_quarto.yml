@@ -1,0 +1,76 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "COMP/STAT112 Notebook"
+  author: "Leah"
+  date: today
+  reader-mode: true
+  page-navigation: true
+  back-to-top-navigation: true
+  bread-crumbs: true
+  
+  
+  sidebar:
+    title: "Leah"
+    collapse-level: 2
+    style: "docked"
+    pinned: true
+    search: true
+  
+  
+  chapters:
+    - index.qmd
+
+    - part: "Best Work"
+      chapters: 
+      - bw/bw-uni.qmd
+      - bw/bw-bi.qmd
+      - bw/bw-tri.qmd
+      - bw/bw-quad.qmd
+      - bw/bw-spatial.qmd
+      - bw/bw-exam01.qmd
+      - bw/bw-exam02.qmd
+      - bw/bw-solo project.qmd
+      
+    - part: "In-class Activities"
+      chapters: 
+      - ica/ica-uni.qmd
+      - ica/ica-bi.qmd
+      - ica/ica-multi.qmd
+      - ica/ica-spatial.qmd
+      - ica/ica_wrangling.qmd
+      - ica/ica-dates.qmd
+      - ica/ica-joining.qmd
+      - ica/ica-factors.qmd
+      - ica/ica-strings.qmd
+      
+    - part: "Summary"
+      chapters: 
+      - summary/summary-viz.qmd
+      - summary/summary-data wrangling.qmd
+      - summary/bw-exam01 copy.qmd
+      - summary/bw-exam02 copy.qmd
+      
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    link-external-newwindow: true
+    css: style/custom.css
+    code-copy: true
+    code-link: true
+    code-line-numbers: true
+    code-tools: true
+
+execute:
+  cache: false
+  freeze: auto
+
+editor: 
+  markdown:
+    wrap: sentence # Forces each sentence to be on its own line in source markdown, however, it doesn't affect how it is rendered

@@ -1,0 +1,24 @@
+---
+title: "Spatial Viz"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
+---
+
+```{r}
+library(tidyverse)
+fave_places <- read.csv("https://hash-mac.github.io/stat112site-s25/data/our_fave_places.csv")
+library(leaflet)
+
+leaflet(data = fave_places) |> 
+  addTiles() |> 
+  addMarkers() |> 
+addTiles(attribution = 'https://hash-mac.github.io/stat112site-s25/data/our_fave_places.csv by Leah Zhang')
+
+```
+

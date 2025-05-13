@@ -1,0 +1,65 @@
+---
+title: "Reshaping"
+---
+
+Example 1
+```{r}
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+```
+
+```{r}
+# Using count()
+penguins |> 
+  count(species, sex)
+```
+
+```{r}
+# Using group_by() and summarize()
+penguins |> 
+  group_by(species,sex) |>
+  summarize(n())
+```
+
+Example 2
+
+```{r}
+penguin_avg <- penguins |> 
+  group_by(species, sex) |> 
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE)) |> 
+  na.omit()
+```
+
+Example 3
+
+```{r}
+# Units of observation = ???
+head(penguins)
+```
+
+```{r}
+# Units of observation = ???
+head(penguin_avg)
+```
+
+Example 5
+
+```{r}
+penguin_avg |> 
+  pivot_wider(names_from = sex, values_from = avg_body_mass)
+```
+
+```{r}
+penguin_avg |> 
+  pivot_wider(names_from = sex, values_from = avg_body_mass) |> 
+  mutate(diff = male - female)
+```
+
+Example 6
+
+```{r}
+penguin_avg_wide <- penguin_avg |> 
+  pivot_wider(names_from = sex, values_from = avg_body_mass)
+
+penguin_avg_wide
+```

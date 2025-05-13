@@ -1,0 +1,41 @@
+---
+title: "Solo Project"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
+---
+
+In this study, I aimed to analyze and visualize the spatial distribution of water resources across Tennessee at a granular administrative level. The primary objective was to create an accessible, data-driven map that highlights variations in water area coverage, which could serve as a foundational tool for environmental or infrastructural assessments.  
+
+I began by acquiring county subdivision boundary data from the U.S. Census Bureau’s TIGER/Line Shapefiles, specifically the `tl_2019_47_cousub.shp` file, which delineates Tennessee’s minor civil divisions (e.g., towns, precincts). Using R’s `sf` package, I imported and processed the geospatial data to extract the `AWATER` attribute—a metric representing water area in square meters. To improve interpretability, I converted these values to square kilometers by dividing by \(1 \times 10^6\).  
+
+For visualization, I employed `ggplot2` to construct a choropleth map. Each subdivision was shaded according to its water area, using a gradient scale to emphasize quantitative differences. To enhance geographic accuracy, I applied the Robinson projection, which balances distortions in shape and area—a critical consideration for statewide spatial analysis. Stylistically, I opted for a minimalist design using `theme_void` to eliminate non-essential elements (e.g., axes, gridlines), ensuring the audience’s focus remained on the spatial patterns.  
+
+```{r}
+library(sf)
+library(ggplot2)
+tennessee_shapes <- read_sf("/Users/leah/Desktop/portfolio-leahzhang/tl_2019_47_cousub/tl_2019_47_cousub.shp")
+```
+
+```{r}
+ggplot() +
+  geom_sf(
+    data = tennessee_shapes, 
+    aes(fill = AWATER / 1e6),
+    color = "white", size = 0.4) +
+  coord_sf(crs = "+proj=robin") +
+  scale_fill_gradient(labels = scales::comma) +
+  labs(fill = NULL,
+       title = "Water Area Distribution Aross Tennessee",
+       subtitle = "County-level water area in square kilometers",
+        caption = "Data: U.S. Census Bureau TIGER/Line Shapefiles") +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+The resulting map revealed pronounced disparities in water distribution. Subdivisions adjacent to major river systems, such as the Mississippi or Tennessee River, exhibited significantly higher water coverage, while inland and upland regions showed minimal values. These patterns align with Tennessee’s physiographic diversity, underscoring how hydrological resources correlate with topography.  
