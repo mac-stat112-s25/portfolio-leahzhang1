@@ -1,0 +1,37 @@
+---
+title: "Exam 1"
+execute:
+  echo: true
+  warning: false
+  error: false
+  
+format:
+  html:
+    code-fold: true
+---
+
+```{r}
+#Load data
+library(tidyverse)
+library(tidytuesdayR)
+tuesdata <- tt_load('2020-02-18')
+fc <-tuesdata$food_consumption
+```
+
+```{r}
+#Check data
+dim(fc)
+str(fc)
+head(fc)
+summarise(fc)
+```
+
+```{r}
+#| fig-height: 10
+#| fig-width: 5
+#Vizualization
+ggplot(fc, aes(y = consumption, x = country)) + 
+  geom_boxplot() + 
+  facet_wrap(~ food_category, ncol = 2) +
+  theme_minimal()
+```
