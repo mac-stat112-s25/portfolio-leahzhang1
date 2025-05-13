@@ -50,6 +50,8 @@ book:
       chapters: 
       - summary/summary-viz.qmd
       - summary/summary-data wrangling.qmd
+      - summary/bw-exam01 copy.qmd
+      - summary/bw-exam02 copy.qmd
       
 format:
   html:
