@@ -1,0 +1,17 @@
+{
+  "hash": "af759abd211620dc2aa6ffd5905be7c1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Quadvariate Viz\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\n# Import data\nweather <- read.csv(\"https://mac-stat.github.io/data/weather_3_locations.csv\") |> \n  mutate(date = as.Date(date))  \n\nggplot(weather, aes(y = temp3pm, x = temp9am, color = location)) + \n  geom_point() +\n  facet_wrap(~ raintoday) +\n  labs(\n    title = \"Temperature Comparison: 9 AM vs 3 PM\",\n    subtitle = \"Faceted by Rain Today Status\",\n    x = \"Temperature at 9 AM (°C)\",\n    y = \"Temperature at 3 PM (°C)\",\n    caption = \"Source: https://mac-stat.github.io/data/weather_3_locations.csv by Leah Zhang\"\n  )\n```\n\n::: {.cell-output-display}\n![](bw-quad_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "bw-quad_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

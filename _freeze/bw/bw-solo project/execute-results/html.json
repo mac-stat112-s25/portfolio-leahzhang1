@@ -1,0 +1,17 @@
+{
+  "hash": "a3e5e0865a4f380a3e9b7cfe88f39001",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Solo Project\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sf)\nlibrary(ggplot2)\ntennessee_shapes <- read_sf(\"/Users/leah/Desktop/portfolio-leahzhang1/tl_2019_47_cousub/tl_2019_47_cousub.shp\")\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot() +\n  geom_sf(\n    data = tennessee_shapes, \n    aes(fill = AWATER / 1e6),\n    color = \"white\", size = 0.4) +\n  coord_sf(crs = \"+proj=robin\") +\n  scale_fill_gradient(labels = scales::comma) +\n  labs(fill = NULL,\n       title = \"Water Area Distribution Aross Tennessee\",\n       subtitle = \"County-level water area in square kilometers\",\n        caption = \"Data: U.S. Census Bureau TIGER/Line Shapefiles\") +\n  theme_void() +\n  theme(legend.position = \"bottom\")\n```\n\n::: {.cell-output-display}\n![](bw-solo-project_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "bw-solo-project_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

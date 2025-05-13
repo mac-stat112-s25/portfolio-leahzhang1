@@ -1,0 +1,17 @@
+{
+  "hash": "c71551c6d976de454b941a6eeda1c1a4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Bivariate Viz\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nelections <- read.csv(\"https://mac-stat.github.io/data/election_2020_county.csv\")\nlibrary(ggplot2)\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_point(aes(label = state_abbr)) + labs(\n    title = \"Comparison of Republican Vote Percentages (2016 vs 2020)\",\n    subtitle = \"Data by County\",\n    x = \"Republican Vote Percentage (2016)\",\n    y = \"Republican Vote Percentage (2020)\",\n    caption = \"Source: https://www.270towin.com/content/blue-and-red-states by Leah Zhang\"\n  ) +\n  geom_smooth(method = \"lm\", color = \"red\", se = FALSE)\n```\n\n::: {.cell-output-display}\n![](bw-bi_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "bw-bi_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

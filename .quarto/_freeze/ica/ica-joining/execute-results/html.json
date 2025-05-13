@@ -1,0 +1,15 @@
+{
+  "hash": "f60033670a86c7ebc2724dfbcb1a57a4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Joining\"\n---\n\n\n\n\nExercise 1: Where are my keys?\n\nPart a\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstudents_2 <- data.frame(\n  student = c(\"D\", \"E\", \"F\"),\n  class = c(\"COMP 101\", \"BIOL 101\", \"POLI 101\")\n)\n\n# Check it out\nstudents_2\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  student    class\n1       D COMP 101\n2       E BIOL 101\n3       F POLI 101\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "20f0c5506b4704842347e716b29106c4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Univariate Viz\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n# Import data\nhikes <- read.csv(\"https://mac-stat.github.io/data/high_peaks.csv\")\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(hikes, aes(x = elevation)) +\n  geom_histogram(color = \"white\") +\n  labs(\n    title = \"Distribution of 46 Hike Elevations in the Adirondack Mountains\",\n    x = \"Elevation (feet)\", y = \"Number of hikes\",\n    caption = \"Data Source: https://mac-stat.github.io/data/high_peaks.csv by Leah Zhang\"\n  )\n```\n\n::: {.cell-output-display}\n![](bw-uni_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "bw-uni_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

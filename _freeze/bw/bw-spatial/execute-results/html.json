@@ -1,0 +1,19 @@
+{
+  "hash": "78641db88f462df5cc07030dc8e09667",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Spatial Viz\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nfave_places <- read.csv(\"https://hash-mac.github.io/stat112site-s25/data/our_fave_places.csv\")\nlibrary(leaflet)\n\nleaflet(data = fave_places) |> \n  addTiles() |> \n  addMarkers() |> \naddTiles(attribution = 'https://hash-mac.github.io/stat112site-s25/data/our_fave_places.csv by Leah Zhang')\n```\n\n::: {.cell-output-display}\n\n```{=html}\n<div class=\"leaflet html-widget html-fill-item\" id=\"htmlwidget-f0022b62e58c04813c9d\" style=\"width:100%;height:464px;\"></div>\n<script type=\"application/json\" data-for=\"htmlwidget-f0022b62e58c04813c9d\">{\"x\":{\"options\":{\"crs\":{\"crsClass\":\"L.CRS.EPSG3857\",\"code\":null,\"proj4def\":null,\"projectedBounds\":null,\"options\":{}}},\"calls\":[{\"method\":\"addTiles\",\"args\":[\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\",null,null,{\"minZoom\":0,\"maxZoom\":18,\"tileSize\":256,\"subdomains\":\"abc\",\"errorTileUrl\":\"\",\"tms\":false,\"noWrap\":false,\"zoomOffset\":0,\"zoomReverse\":false,\"opacity\":1,\"zIndex\":1,\"detectRetina\":false,\"attribution\":\"&copy; <a href=\\\"https://openstreetmap.org/copyright/\\\">OpenStreetMap<\\/a>,  <a href=\\\"https://opendatacommons.org/licenses/odbl/\\\">ODbL<\\/a>\"}]},{\"method\":\"addMarkers\",\"args\":[[59,45,33,40,40,37,33,38,52,35,25,41,34,46,50,45,14,44,52,45,38,48,33,33,48,39,32,46,0,16,30,36,38,38,38,50,45,20],[18,-93,-117,116,106,-122,-106,24,5,-90,122,29,-118,-111,7,-93,101,-70,5,-90,122,-122,-117,-80,123,107,119,-85,0,68,-100,104,127,-123,-123,7,-124,-155],null,null,null,{\"interactive\":true,\"draggable\":false,\"keyboard\":true,\"title\":\"\",\"alt\":\"\",\"zIndexOffset\":0,\"opacity\":1,\"riseOnHover\":false,\"riseOffset\":250},null,null,null,null,null,{\"interactive\":false,\"permanent\":false,\"direction\":\"auto\",\"opacity\":1,\"offset\":[0,0],\"textsize\":\"10px\",\"textOnly\":false,\"className\":\"\",\"sticky\":true},null]},{\"method\":\"addTiles\",\"args\":[\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\",null,null,{\"minZoom\":0,\"maxZoom\":18,\"tileSize\":256,\"subdomains\":\"abc\",\"errorTileUrl\":\"\",\"tms\":false,\"noWrap\":false,\"zoomOffset\":0,\"zoomReverse\":false,\"opacity\":1,\"zIndex\":1,\"detectRetina\":false,\"attribution\":\"https://hash-mac.github.io/stat112site-s25/data/our_fave_places.csv by Leah Zhang\"}]}],\"limits\":{\"lat\":[0,59],\"lng\":[-155,127]}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/htmltools-fill-0.5.8.1/fill.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<script src=\"../site_libs/jquery-3.6.0/jquery-3.6.0.min.js\"></script>\n<link href=\"../site_libs/leaflet-1.3.1/leaflet.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/leaflet-1.3.1/leaflet.js\"></script>\n<link href=\"../site_libs/leafletfix-1.0.0/leafletfix.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/proj4-2.6.2/proj4.min.js\"></script>\n<script src=\"../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js\"></script>\n<link href=\"../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css\" rel=\"stylesheet\" />\n<script src=\"../site_libs/leaflet-binding-2.2.2/leaflet.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

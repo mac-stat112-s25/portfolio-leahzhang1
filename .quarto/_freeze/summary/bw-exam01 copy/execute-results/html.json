@@ -1,0 +1,17 @@
+{
+  "hash": "2bd9c19642e95c02d3e5929c78b8e5a6",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Exam 1\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\n#Load data\nlibrary(tidyverse)\nlibrary(tidytuesdayR)\ntuesdata <- tt_load('2020-02-18')\nfc <-tuesdata$food_consumption\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n#Check data\ndim(fc)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 1430    4\n```\n\n\n:::\n\n```{.r .cell-code}\nstr(fc)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nspc_tbl_ [1,430 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ country      : chr [1:1430] \"Argentina\" \"Argentina\" \"Argentina\" \"Argentina\" ...\n $ food_category: chr [1:1430] \"Pork\" \"Poultry\" \"Beef\" \"Lamb & Goat\" ...\n $ consumption  : num [1:1430] 10.51 38.66 55.48 1.56 4.36 ...\n $ co2_emmission: num [1:1430] 37.2 41.53 1712 54.63 6.96 ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   country = col_character(),\n  ..   food_category = col_character(),\n  ..   consumption = col_double(),\n  ..   co2_emmission = col_double()\n  .. )\n - attr(*, \"problems\")=<externalptr> \n```\n\n\n:::\n\n```{.r .cell-code}\nhead(fc)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 6 × 4\n  country   food_category consumption co2_emmission\n  <chr>     <chr>               <dbl>         <dbl>\n1 Argentina Pork                10.5          37.2 \n2 Argentina Poultry             38.7          41.5 \n3 Argentina Beef                55.5        1712   \n4 Argentina Lamb & Goat          1.56         54.6 \n5 Argentina Fish                 4.36          6.96\n6 Argentina Eggs                11.4          10.5 \n```\n\n\n:::\n\n```{.r .cell-code}\nsummarise(fc)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 1 × 0\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n#Vizualization\nggplot(fc, aes(y = consumption, x = country)) + \n  geom_boxplot() + \n  facet_wrap(~ food_category, ncol = 2) +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](bw-exam01-copy_files/figure-html/unnamed-chunk-3-1.png){width=480}\n:::\n:::\n",
+    "supporting": [
+      "bw-exam01-copy_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

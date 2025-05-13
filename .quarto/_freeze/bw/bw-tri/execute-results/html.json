@@ -1,0 +1,17 @@
+{
+  "hash": "06899415930effc4946250efbd35b036",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Trivariate Viz\"\nexecute:\n  echo: true\n  warning: false\n  error: false\n  \nformat:\n  html:\n    code-fold: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\n# Import and check out data\nlibrary(ggplot2)\neducation <- read.csv(\"https://mac-stat.github.io/data/sat.csv\")\nhead(education)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n       State expend ratio salary frac verbal math  sat  fracCat\n1    Alabama  4.405  17.2 31.144    8    491  538 1029   (0,15]\n2     Alaska  8.963  17.6 47.951   47    445  489  934 (45,100]\n3    Arizona  4.778  19.3 32.175   27    448  496  944  (15,45]\n4   Arkansas  4.459  17.1 28.934    6    482  523 1005   (0,15]\n5 California  4.992  24.0 41.078   45    417  485  902  (15,45]\n6   Colorado  5.443  18.4 34.571   29    462  518  980  (15,45]\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(education, aes(x = sat, y = salary, color=expend)) +\n  geom_point() +\n  labs(\n    title = \"Relationship Between SAT Scores and Teacher Salaries\",\n    subtitle = \"Colored by Expenditure per Student\",\n    x = \"Average SAT Score\",\n    y = \"Average Teacher Salary (USD)\",\n    caption = \"Source: https://mac-stat.github.io/data/sat.csv by Leah Zhang\")\n```\n\n::: {.cell-output-display}\n![](bw-tri_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "bw-tri_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
