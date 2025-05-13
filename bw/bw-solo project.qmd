@@ -19,7 +19,7 @@ For visualization, I employed `ggplot2` to construct a choropleth map. Each subd
 ```{r}
 library(sf)
 library(ggplot2)
-tennessee_shapes <- read_sf("/Users/leah/Desktop/portfolio-leahzhang/tl_2019_47_cousub/tl_2019_47_cousub.shp")
+tennessee_shapes <- read_sf("/Users/leah/Desktop/portfolio-github/tl_2019_47_cousub/tl_2019_47_cousub.shp")
 ```
 
 ```{r}
